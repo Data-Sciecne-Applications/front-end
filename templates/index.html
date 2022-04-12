@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <h1>Recommender System for Resume</h1>
+    <div class="upload_resume" >
+        <form action="/" method="POST" enctype="multipart/form-data" id="resume-form">
+            <input type="file" id="upload_resume" name="upload_resume" accept=".pdf" />
+            <input type="submit" value="submit"/>
+        </form>
+    </div>
+
+    {% if title|length < 1 %}
+    <h2>No Recommendation generated yet!</h2>
+    {% else %}
+        <table>
+            <tr>
+                <th>job title</th>
+                <th>description</th>
+            </tr>
+
+            {% for t,d in zip(title, description) %}
+                <tr>
+                    <td>{{ t }} </td>
+                    <td>{{ d }}</td>
+                </tr>
+            {% endfor %} 
+        </table>
+
+
+        <h3>Time Cost: {{ time_cost }} Seconds</h3>
+    {% endif %}
+
+{% endblock %}
