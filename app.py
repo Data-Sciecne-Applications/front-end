@@ -37,7 +37,7 @@ def process_resume(file_path, file_name):
     stopwords = spacy.lang.en.stop_words.STOP_WORDS
 
     # Load data
-    df_jobs = pd.read_csv("./data/df_job_final.csv", usecols=['title', 'department', 'description_combined'])
+    df_jobs = pd.read_csv("./data/df_job_final.csv", usecols=['title', 'department', 'description','description_combined'])
     df_resume = pd.read_csv("./data/data_resume_cc.csv", usecols=['Category', 'Resume_c'])
     # department mapping between job and resume labels
     THRESHOLD = 50
@@ -119,11 +119,11 @@ def index():
             
         return render_template('index.html',
         title=recommendations['title'],
-        description=recommendations['description_combined'],
+        description=recommendations['description'],
         time_cost=time_cost,
         zip=zip)
     else:
         return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5000)
